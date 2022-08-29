@@ -1,0 +1,18 @@
+{
+  "name": "skyrim-potions-helper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "generate:ingredients": "node ./data-generator/ingredients.js",
+    "generate:potions": "node ./data-generator/potions.js",
+    "run": "node main.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "puppeteer": "^16.2.0"
+  }
+}
