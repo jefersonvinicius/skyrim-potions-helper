@@ -1,0 +1,14 @@
+{
+  "name": "data-generator",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "ingredients": "node ./ingredients.js",
+    "potions": "node ./potions.js"
+  },
+  "devDependencies": {
+    "puppeteer": "^17.0.0"
+  }
+}
