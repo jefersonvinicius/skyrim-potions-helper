@@ -1,6 +1,3 @@
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-
 export function cleanDOMText(value) {
   const trashs = ['\n', '(identical to Bone Meal)', '‡', '*', '†'];
   let result = value;
@@ -8,4 +5,8 @@ export function cleanDOMText(value) {
     result = result.replaceAll(trash, '');
   });
   return result.trim();
+}
+
+export function sleep(seconds) {
+  return new Promise((resolve) => setTimeout(resolve, seconds * 1000));
 }
