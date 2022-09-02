@@ -9,7 +9,7 @@ type Props = {
 export default function IngredientCard({ ingredient }: Props) {
   return (
     <IngredientCardContainer>
-      {ingredient.image && <img src={ingredient.image} />}
+      {ingredient.image && <img src={'../static/images/' + ingredient.image} />}
       <h3>{ingredient.name}</h3>
     </IngredientCardContainer>
   );

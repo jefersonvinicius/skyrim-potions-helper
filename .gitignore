@@ -1,3 +1,5 @@
 node_modules
 dist
 client-build
+data-generator/images/*
+!data-generator/images/.gitkeep

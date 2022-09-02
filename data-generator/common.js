@@ -7,6 +7,7 @@ export function cleanDOMText(value) {
   return result.trim();
 }
 
-export function sleep(seconds) {
-  return new Promise((resolve) => setTimeout(resolve, seconds * 1000));
+export function createFilename(name, extension) {
+  const filename = name.toLowerCase().replaceAll(' ', '').replaceAll("'", '');
+  return `${filename}.${extension}`;
 }

@@ -4,11 +4,10 @@
   "type": "module",
   "main": "index.js",
   "license": "MIT",
-  "scripts": {
-    "ingredients": "node ./ingredients.js",
-    "potions": "node ./potions.js"
-  },
   "devDependencies": {
     "puppeteer": "^17.0.0"
+  },
+  "dependencies": {
+    "axios": "^0.27.2"
   }
 }

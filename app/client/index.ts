@@ -7,7 +7,7 @@ const createWindow = () => {
   });
 
   try {
-    win.setMenu(null);
+    // win.setMenu(null);
     win.loadURL('http://localhost:9000/');
   } catch (error) {
     console.log(error);
