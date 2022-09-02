@@ -1,6 +1,12 @@
 import React from 'react';
-import { createRoot } from 'react-dom/client';
-import Home from './pages/Home';
+import Main from './pages/Main';
+import GlobalStyles from './styles/global';
 
-const root = createRoot(document.querySelector('#root')!);
-root.render(<Home />);
+export default function App() {
+  return (
+    <>
+      <GlobalStyles />
+      <Main />
+    </>
+  );
+}

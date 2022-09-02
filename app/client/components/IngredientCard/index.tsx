@@ -14,9 +14,13 @@ export default function IngredientCard({
   isSelected,
   onClick,
 }: Props) {
+  const src = ingredient.image
+    ? '../static/images/' + ingredient.image
+    : '../static/images/placeholder.jpg';
+
   return (
     <IngredientCardContainer onClick={() => onClick(ingredient)}>
-      {ingredient.image && <img src={'../static/images/' + ingredient.image} />}
+      <img src={src} />
       <h3>{ingredient.name}</h3>
       {isSelected && (
         <div className="check-icon">

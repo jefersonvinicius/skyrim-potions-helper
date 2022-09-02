@@ -3,7 +3,7 @@ const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-  entry: './app/client/App.tsx',
+  entry: './app/client/root.tsx',
   module: {
     rules: [
       {

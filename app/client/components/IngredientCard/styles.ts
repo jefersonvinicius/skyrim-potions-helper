@@ -7,7 +7,7 @@ export const IngredientCardContainer = styled.div`
   transition-duration: 400ms;
 
   & > img {
-    height: 300px;
+    height: 100px;
     width: 100%;
     object-fit: contain;
   }
