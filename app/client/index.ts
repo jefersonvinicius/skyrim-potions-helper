@@ -1,16 +1,17 @@
 import { app, BrowserWindow } from 'electron';
-import path from 'path';
 
 const createWindow = () => {
   const win = new BrowserWindow({
     width: 800,
     height: 600,
-    // webPreferences: {
-    //   preload: path.join(__dirname, 'preload.js'),
-    // },
   });
 
-  win.loadFile(path.resolve(__dirname, 'index.html'));
+  try {
+    win.setMenu(null);
+    win.loadURL('http://localhost:9000/');
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 app.on('window-all-closed', () => {

@@ -8,7 +8,7 @@
     "clean": "rimraf client-build",
     "copy-index": "copyfiles -f ./app/client/index.html ./client-build/app/client/",
     "client:build": "yarn clean && tsc && yarn copy-index",
-    "client:dev": "electron .",
+    "client:dev": "yarn client:build && electron .",
     "build": "webpack",
     "serve": "webpack serve"
   },
@@ -16,6 +16,9 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/react": "^18.0.18",
+    "@types/react-dom": "^18.0.6",
+    "@types/styled-components": "^5.1.26",
     "babel-loader": "^8.2.5",
     "copyfiles": "^2.4.1",
     "css-loader": "^6.7.1",
@@ -31,6 +34,9 @@
     "webpack-dev-server": "^4.10.1"
   },
   "dependencies": {
-    "path-browserify": "^1.0.1"
+    "path-browserify": "^1.0.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "styled-components": "^5.3.5"
   }
 }
