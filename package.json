@@ -4,13 +4,13 @@
   "description": "",
   "main": "client-build/app/index.js",
   "scripts": {
-    "main": "node main.js",
     "clean": "rimraf client-build",
     "copy-index": "copyfiles -f ./app/client/index.html ./client-build/app/client/",
     "client:build": "yarn clean && tsc && yarn copy-index",
-    "client:dev": "yarn client:build && electron .",
     "build": "webpack",
-    "serve": "webpack serve"
+    "client:prd": "yarn client:build && yarn build && electron .",
+    "server:dev": "webpack serve",
+    "client:dev": "export NODE_ENV=dev && yarn client:build && electron ."
   },
   "keywords": [],
   "author": "",
@@ -23,6 +23,7 @@
     "@typescript-eslint/eslint-plugin": "^5.36.1",
     "@typescript-eslint/parser": "^5.36.1",
     "babel-loader": "^8.2.5",
+    "copy-webpack-plugin": "^11.0.0",
     "copyfiles": "^2.4.1",
     "css-loader": "^6.7.1",
     "electron": "^20.1.0",

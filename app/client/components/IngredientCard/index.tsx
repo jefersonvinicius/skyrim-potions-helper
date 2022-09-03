@@ -15,8 +15,8 @@ export default function IngredientCard({
   onClick,
 }: Props) {
   const src = ingredient.image
-    ? '../static/images/' + ingredient.image
-    : '../static/images/placeholder.jpg';
+    ? './static/images/' + ingredient.image
+    : './static/images/placeholder.jpg';
 
   return (
     <IngredientCardContainer onClick={() => onClick(ingredient)}>

@@ -1,6 +1,6 @@
 import { Ingredient } from '@app/core/ingredient';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import allIngredients from '@app/client/static/ingredients.json';
+import allIngredients from '@app/client/data/ingredients.json';
 
 type SearchParams = {
   text: string;

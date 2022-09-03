@@ -9,12 +9,17 @@ const createWindow = () => {
       preload: path.join(__dirname, 'preload.js'),
     },
   });
-
   win.setMenu(null);
-  win.webContents.openDevTools({ mode: 'detach' });
+
+  const isDev = process.env.NODE_ENV === 'dev';
+
+  if (isDev) {
+    win.webContents.openDevTools({ mode: 'detach' });
+  }
 
   try {
-    win.loadURL('http://localhost:9000/');
+    if (isDev) win.loadURL('http://localhost:9000/');
+    else win.loadFile(path.join(__dirname, '..', 'dist', 'index.html'));
   } catch (error) {
     console.log(error);
   }
