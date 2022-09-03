@@ -1,7 +1,7 @@
 import puppeteer from 'puppeteer';
 import fs from 'node:fs';
 import path from 'node:path';
-import { cleanDOMText, sleep } from './common.js';
+import { cleanDOMText } from './common.js';
 
 const INGREDIENTS_PAGE =
   'https://elderscrolls.fandom.com/wiki/Ingredients_(Skyrim)';

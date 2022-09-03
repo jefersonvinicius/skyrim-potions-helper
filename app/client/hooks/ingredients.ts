@@ -1,5 +1,5 @@
 import { Ingredient } from '@app/core/ingredient';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import allIngredients from '@app/client/static/ingredients.json';
 
 type SearchParams = {
@@ -36,23 +36,20 @@ function normalizeText(value: string) {
 }
 
 export function useIngredientsSelector() {
-  const [ingredientsSelected, setIngredientsSelected] = useState<
-    Record<string, boolean> | undefined
-  >(undefined);
-
-  console.log({ ingredientsSelected });
+  const [ingredientsSelectedStatuses, setIngredientsSelectedStatuses] =
+    useState<Record<string, boolean> | undefined>(undefined);
 
   useEffect(() => {
-    window.app.readIngredientsSelected().then(setIngredientsSelected);
+    window.app.readIngredientsSelected().then(setIngredientsSelectedStatuses);
   }, []);
 
   useEffect(() => {
-    if (ingredientsSelected)
-      window.app.saveIngredientsSelected(ingredientsSelected);
-  }, [ingredientsSelected]);
+    if (ingredientsSelectedStatuses)
+      window.app.saveIngredientsSelected(ingredientsSelectedStatuses);
+  }, [ingredientsSelectedStatuses]);
 
   const toggleIngredient = useCallback((ingredient: Ingredient) => {
-    setIngredientsSelected((old) => ({
+    setIngredientsSelectedStatuses((old) => ({
       ...old,
       [ingredient.name]:
         old?.[ingredient.name] !== undefined ? !old[ingredient.name] : true,
@@ -61,10 +58,24 @@ export function useIngredientsSelector() {
 
   const isIngredientSelected = useCallback(
     (ingredient: Ingredient) => {
-      return !!ingredientsSelected?.[ingredient.name];
+      return !!ingredientsSelectedStatuses?.[ingredient.name];
     },
-    [ingredientsSelected]
+    [ingredientsSelectedStatuses]
   );
 
-  return { isIngredientSelected, toggleIngredient };
+  const ingredientsSelected = useMemo(() => {
+    const ingredientsNames = Object.entries(ingredientsSelectedStatuses ?? {})
+      .filter(([, selected]) => selected === true)
+      .map(([name]) => name);
+
+    return allIngredients.filter((ingredient) =>
+      ingredientsNames.includes(ingredient.name)
+    );
+  }, [ingredientsSelectedStatuses]);
+
+  return {
+    isIngredientSelected,
+    toggleIngredient,
+    ingredientsSelected,
+  };
 }

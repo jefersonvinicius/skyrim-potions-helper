@@ -10,8 +10,10 @@ const createWindow = () => {
     },
   });
 
+  win.setMenu(null);
+  win.webContents.openDevTools({ mode: 'detach' });
+
   try {
-    // win.setMenu(null);
     win.loadURL('http://localhost:9000/');
   } catch (error) {
     console.log(error);

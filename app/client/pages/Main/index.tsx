@@ -9,10 +9,15 @@ import {
 import { Ingredient } from '@app/core/ingredient';
 import NotFound from './NotFound';
 import { MainPageContainer } from './styles';
+import MakePotionsButton from './MakePotionsButton';
+import PotionsModal from './PotionsModal';
 
 export default function Main() {
   const [search, setSearch] = useState('');
-  const { isIngredientSelected, toggleIngredient } = useIngredientsSelector();
+  const [modalIsVisible, setModalIsVisible] = useState(false);
+
+  const { isIngredientSelected, toggleIngredient, ingredientsSelected } =
+    useIngredientsSelector();
   const { ingredients } = useIngredientSearch({ text: search });
 
   function handleIngredientClick(ingredient: Ingredient) {
@@ -36,6 +41,14 @@ export default function Main() {
       ) : (
         <NotFound />
       )}
+      {ingredientsSelected.length >= 2 && (
+        <MakePotionsButton onClick={() => setModalIsVisible(true)} />
+      )}
+      <PotionsModal
+        isVisible={modalIsVisible}
+        onClose={() => setModalIsVisible(false)}
+        ingredients={ingredientsSelected}
+      />
     </MainPageContainer>
   );
 }
