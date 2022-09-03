@@ -2,24 +2,21 @@ import React, { useState } from 'react';
 import IngredientCard from '@app/client/components/IngredientCard';
 import Grid from '@app/client/components/Grid';
 import SearchBar from './SearchBar';
-import { useIngredientSearch } from '@app/client/hooks/ingredients';
+import {
+  useIngredientSearch,
+  useIngredientsSelector,
+} from '@app/client/hooks/ingredients';
 import { Ingredient } from '@app/core/ingredient';
 import NotFound from './NotFound';
 import { MainPageContainer } from './styles';
 
 export default function Main() {
   const [search, setSearch] = useState('');
-  const [ingredientsSelected, setIngredientsSelected] = useState<{
-    [key: string]: boolean;
-  }>({});
+  const { isIngredientSelected, toggleIngredient } = useIngredientsSelector();
   const { ingredients } = useIngredientSearch({ text: search });
 
   function handleIngredientClick(ingredient: Ingredient) {
-    setIngredientsSelected((old) => ({
-      ...old,
-      [ingredient.name]:
-        old[ingredient.name] !== undefined ? !old[ingredient.name] : true,
-    }));
+    toggleIngredient(ingredient);
   }
 
   return (
@@ -31,7 +28,7 @@ export default function Main() {
             <IngredientCard
               key={ingredient.name}
               ingredient={ingredient}
-              isSelected={ingredientsSelected[ingredient.name]}
+              isSelected={isIngredientSelected(ingredient)}
               onClick={handleIngredientClick}
             />
           ))}
