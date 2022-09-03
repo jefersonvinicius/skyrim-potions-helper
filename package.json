@@ -10,12 +10,20 @@
     "build": "webpack",
     "client:prd": "yarn client:build && yarn build && electron .",
     "server:dev": "webpack serve",
-    "client:dev": "export NODE_ENV=dev && yarn client:build && electron ."
+    "client:dev": "export NODE_ENV=dev && yarn client:build && electron .",
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@electron-forge/cli": "^6.0.0-beta.65",
+    "@electron-forge/maker-deb": "^6.0.0-beta.65",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.65",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.65",
+    "@electron-forge/maker-zip": "^6.0.0-beta.65",
     "@types/react": "^18.0.18",
     "@types/react-dom": "^18.0.6",
     "@types/react-modal": "^3.13.1",
@@ -41,6 +49,7 @@
     "webpack-dev-server": "^4.10.1"
   },
   "dependencies": {
+    "electron-squirrel-startup": "^1.0.0",
     "electron-store": "^8.1.0",
     "path-browserify": "^1.0.1",
     "react": "^18.2.0",
@@ -48,5 +57,32 @@
     "react-icons": "^4.4.0",
     "react-modal": "^3.15.1",
     "styled-components": "^5.3.5"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {},
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "skyrim_potions_helper"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ]
+    }
   }
 }
