@@ -8,11 +8,16 @@ const Container = styled.button`
   position: fixed;
   bottom: 10px;
   right: 10px;
-  padding: 20px;
-  border-radius: 5px;
+  padding: 15px;
+  border-radius: 50%;
 
   &:hover {
     cursor: pointer;
+  }
+
+  & > img {
+    width: 40px;
+    height: 40px;
   }
 `;
 
@@ -21,5 +26,9 @@ type Props = {
 };
 
 export default function MakePotionsButton(props: Props) {
-  return <Container {...props}>Make Potions</Container>;
+  return (
+    <Container {...props}>
+      <img src="./static/icons/potion.png " />
+    </Container>
+  );
 }

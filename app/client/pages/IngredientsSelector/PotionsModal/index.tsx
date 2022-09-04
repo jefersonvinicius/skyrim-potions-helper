@@ -1,11 +1,12 @@
 import { getIngredientImage } from '@app/client/utils/ingredients';
 import { Ingredient } from '@app/core/ingredient';
 import { selectPotions } from '@app/core/select-potions';
-import React, { useEffect, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import Modal from 'react-modal';
 import MiniIngredientCard from './MiniIngredientCard';
 import { CloseButton, ModalContent } from './styles';
 import { GrClose } from 'react-icons/gr';
+import { useDisablePageScroll } from '@app/client/hooks/dom';
 
 const modalStyles = {
   content: {
@@ -33,10 +34,7 @@ export default function PotionsModal({
   isVisible,
   onClose,
 }: Props) {
-  useEffect(() => {
-    if (isVisible) document.body.style.overflow = 'hidden';
-    else document.body.style.overflow = 'unset';
-  }, [isVisible]);
+  useDisablePageScroll({ when: isVisible });
 
   const potions = useMemo(() => {
     if (!isVisible) return [];
@@ -69,7 +67,7 @@ export default function PotionsModal({
             </div>
           </div>
         ))}
-        <CloseButton>
+        <CloseButton onClick={onClose}>
           <GrClose />
         </CloseButton>
       </ModalContent>
